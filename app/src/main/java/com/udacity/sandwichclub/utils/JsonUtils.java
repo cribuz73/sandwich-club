@@ -29,11 +29,11 @@ public class JsonUtils {
                 alsoKnownAsList.add(otherName);
             }
 
-            String placeOfOrigin = nameJsonObject.getString("placeOfOrigin");
-            String description = nameJsonObject.getString("description");
-            String image = nameJsonObject.getString("image");
+            String placeOfOrigin = baseJsonObject.getString("placeOfOrigin");
+            String description = baseJsonObject.getString("description");
+            String image = baseJsonObject.getString("image");
 
-            JSONArray ingredientsArray = nameJsonObject.getJSONArray("ingredients");
+            JSONArray ingredientsArray = baseJsonObject.getJSONArray("ingredients");
             List<String> ingredientsList = new ArrayList<>();
             for (int a = 0; a < ingredientsArray.length(); a++){
                 String otherIngredient = ingredientsArray.getString(a);
