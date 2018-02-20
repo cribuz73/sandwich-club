@@ -13,8 +13,9 @@ import java.util.List;
 
 public class JsonUtils {
 
-
     public static Sandwich parseSandwichJson(String json) {
+
+        Sandwich sandwich = new Sandwich();
 
             try {
             JSONObject baseJsonObject = new JSONObject(json);
@@ -40,12 +41,12 @@ public class JsonUtils {
                 ingredientsList.add(otherIngredient);
             }
 
-            Sandwich sandwich = new Sandwich(mainName, alsoKnownAsList, placeOfOrigin, description, image,ingredientsList);
+            sandwich = new Sandwich(mainName,alsoKnownAsList,placeOfOrigin,description,image,ingredientsList);
         }
         catch (JSONException e){
-            Log.e("JsonUtils", "Eroare in Json", e);
+            Log.e("JsonUtils", "Error in Json", e);
         }
 
-        return new Sandwich();
+        return sandwich ;
     }
 }
