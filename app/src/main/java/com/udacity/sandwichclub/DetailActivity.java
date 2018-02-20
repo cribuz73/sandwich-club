@@ -23,10 +23,10 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        TextView alsoKnownAsTv = (TextView) findViewById(R.id.also_known_tv);
-        TextView descriptionTv = (TextView) findViewById(R.id.description_tv);
-        TextView ingredientsTv = (TextView) findViewById(R.id.ingredients_tv);
-        TextView originTv = (TextView) findViewById(R.id.origin_tv);
+        TextView alsoKnownAsTv = findViewById(R.id.also_known_tv);
+        TextView descriptionTv = findViewById(R.id.description_tv);
+        TextView ingredientsTv = findViewById(R.id.ingredients_tv);
+        TextView originTv = findViewById(R.id.origin_tv);
 
 
 
@@ -67,14 +67,21 @@ public class DetailActivity extends AppCompatActivity {
         for (String sAlsoKnownAs : lAlsoKnownAs ){
             builderA.append(sAlsoKnownAs + " ");
         }
-        alsoKnownAsTv.setText(builderA.toString());
+        if(builderA.toString().isEmpty()){
+          alsoKnownAsTv.setText("Not available");
+        } else {
+            alsoKnownAsTv.setText(builderA.toString());
+        }
 
         String sDescription = sandwich.getDescription();
         descriptionTv.setText(sDescription);
 
         String sPlaceOfOrigin = sandwich.getPlaceOfOrigin();
-        originTv.setText(sPlaceOfOrigin);
-
+        if(sPlaceOfOrigin.isEmpty()){
+         originTv.setText("Not available");
+        } else {
+            originTv.setText(sPlaceOfOrigin);
+        }
         List<String> lIngredients = sandwich.getIngredients();
         StringBuilder builderB = new StringBuilder();
         for (String sIngredients : lIngredients ){

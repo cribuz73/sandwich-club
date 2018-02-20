@@ -17,24 +17,26 @@ public class JsonUtils {
 
         Sandwich sandwich = new Sandwich();
 
+
             try {
             JSONObject baseJsonObject = new JSONObject(json);
 
-            JSONObject nameJsonObject = baseJsonObject.getJSONObject("name");
-            String mainName = nameJsonObject.getString("mainName");
 
-            JSONArray alsoKnownAsArray = nameJsonObject.getJSONArray("alsoKnownAs");
+            JSONObject nameJsonObject = baseJsonObject.getJSONObject("name");
+                String mainName = nameJsonObject.optString("mainName");
+
+            JSONArray alsoKnownAsArray = nameJsonObject.optJSONArray("alsoKnownAs");
             List<String> alsoKnownAsList = new ArrayList<>();
             for (int i = 0; i < alsoKnownAsArray.length(); i++){
                 String otherName = alsoKnownAsArray.getString(i);
                 alsoKnownAsList.add(otherName);
             }
 
-            String placeOfOrigin = baseJsonObject.getString("placeOfOrigin");
-            String description = baseJsonObject.getString("description");
-            String image = baseJsonObject.getString("image");
+            String placeOfOrigin = baseJsonObject.optString("placeOfOrigin");
+            String description = baseJsonObject.optString("description");
+            String image = baseJsonObject.optString("image");
 
-            JSONArray ingredientsArray = baseJsonObject.getJSONArray("ingredients");
+            JSONArray ingredientsArray = baseJsonObject.optJSONArray("ingredients");
             List<String> ingredientsList = new ArrayList<>();
             for (int a = 0; a < ingredientsArray.length(); a++){
                 String otherIngredient = ingredientsArray.getString(a);
